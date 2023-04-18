@@ -1,0 +1,13 @@
+[Unit]
+Description=Safe shutdown using script and button.
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/local/bin/km4ack-shutdown
+KillMode=process
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

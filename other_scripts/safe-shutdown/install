@@ -1,0 +1,47 @@
+#!/bin/bash
+
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+clear
+cat <<EOF
+##################################################
+##################################################
+Incorrect wiring of the Raspberry Pi GPIO pins
+can cause permanent damage to your Pi. You assume
+all responsibility when wiring your Pi.
+##################################################
+##################################################
+EOF
+read -n 1 -s -r -p "Press any key to continue"
+clear
+echo;echo "installing safe shutdown script"
+
+sudo mv $MYDIR/km4ack-shutdown /usr/local/bin/
+sudo mv $MYDIR/km4ack-shutdown.service /lib/systemd/system/
+
+echo "enabling script on boot"
+
+sudo systemctl enable km4ack-shutdown.service
+sudo systemctl start km4ack-shutdown.service
+
+#get status of service
+STATUS=$(sudo systemctl is-enabled km4ack-shutdown.service)
+
+
+cat <<EOF
+
+
+Script installed and $STATUS
+Connect the button to pins BCM23 & ground.
+A reference image should open showing you the pins.
+If not, the image can be found in the safe-shutdown directory.
+
+To disable the script from running at boot, run:
+sudo systemctl disable km4ack-shutdown.service
+
+To enable the script to run at boot, run:
+sudo systemctl enable km4ack-shutdown.service
+
+73, de KM4ACK
+EOF
+
+xdg-open $MYDIR/pinout.png
