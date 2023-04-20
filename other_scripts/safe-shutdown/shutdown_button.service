@@ -4,7 +4,7 @@ Description=Safe shutdown using script and button.
 [Service]
 Type=simple
 User=pi
-ExecStart=/usr/local/bin/km4ack-shutdown
+ExecStart=/opt/shutdown_button.sh
 KillMode=process
 Restart=always
 RestartSec=2
