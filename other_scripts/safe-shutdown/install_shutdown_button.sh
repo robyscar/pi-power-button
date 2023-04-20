@@ -34,9 +34,10 @@ echo "enabling script on boot"
 ### sudo systemctl start km4ack-shutdown.service
 
 sudo systemctl enable shutdown_button.service
+sudo systemctl daemon-reload
 sudo systemctl start shutdown_button.service
 sudo systemctl status shutdown_button.service
-sudo systemctl daemon-reload
+
 
 #get status of service
 ### STATUS=$(sudo systemctl is-enabled km4ack-shutdown.service)

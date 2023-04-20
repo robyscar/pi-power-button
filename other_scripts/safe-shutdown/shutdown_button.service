@@ -4,7 +4,7 @@ Description=Safe shutdown using script and button.
 [Service]
 Type=simple
 User=pi
-ExecStart=/opt/shutdown_button.sh
+ExecStart=/opt/bin/shutdown_button
 KillMode=process
 Restart=always
 RestartSec=2
