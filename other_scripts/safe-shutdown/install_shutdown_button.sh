@@ -24,7 +24,7 @@ echo;echo "installing safe shutdown script"
 ###     sudo mv $MYDIR/km4ack-shutdown.service /lib/systemd/system/
 
 
-sudo cp $MYDIR/shutdown_button.sh /opt/bin/
+sudo cp $MYDIR/shutdown_button /opt/bin/
 sudo cp $MYDIR/shutdown_button.service /lib/systemd/system/
 
 
@@ -35,7 +35,8 @@ echo "enabling script on boot"
 
 sudo systemctl enable shutdown_button.service
 sudo systemctl start shutdown_button.service
-
+sudo systemctl status shutdown_button.service
+sudo systemctl daemon-reload
 
 #get status of service
 ### STATUS=$(sudo systemctl is-enabled km4ack-shutdown.service)
